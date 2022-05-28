@@ -1,0 +1,9 @@
+.wrap-content {
+    @apply h-screen
+}
+
+.leaflet-container {
+    width : 100%;
+    height : 100%;
+    @apply rounded-xl
+}
