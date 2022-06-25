@@ -3,6 +3,6 @@ import mapSlice from './mapSlice'
 
 export default configureStore({
   reducer: {
-      maps : mapSlice
+      maps : mapSlice,
   }
 })

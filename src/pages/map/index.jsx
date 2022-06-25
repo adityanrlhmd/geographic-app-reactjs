@@ -14,12 +14,25 @@ function Map() {
     const mapsState = useSelector(state => state.maps.mapsState);
     const dispatch = useDispatch();
 
+    // const year = useSelector(state => state.maps.year);
+    // const yearState = useSelector(state => state.maps.yearState);
+    // const param = useParams();
+    // const dispatchYear = useDispatch();
+
     useEffect( () => {
         if (mapsState==='fill'){
           dispatch(getMaps());
         }
       }, [mapsState, dispatch]);
-    
+
+    // useEffect( () => {
+    //     if (yearState==='fill'){
+    //       dispatchYear(getYear(param.year));
+    //     }
+    //   }, [yearState, dispatchYear,param]);
+
+    // console.log(year)
+
     console.log(maps)
 
     const getData = maps.map((e,key) => {
@@ -38,7 +51,7 @@ function Map() {
         <ZoomControl position='bottomright'/>
         {maps ? getData : console.log('Data not found')}
         {map ? <MapLock map={map} /> : null}
-        <MenuMap/>
+        <MenuMap data={maps}/>
       </MapContainer>
     </div>
   )

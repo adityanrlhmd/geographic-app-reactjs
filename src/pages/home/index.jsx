@@ -7,7 +7,8 @@ import { getMaps } from '../../store/mapSlice'
 import MarkerMap from '../../components/markerMap';
 import MapLock from '../../components/mapLock';
 import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet'
-import { FaLongArrowAltRight, FaSearch } from "react-icons/fa";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import Search from '../../components/search';
 
 
 const center = [-6.9208, 106.9258]
@@ -42,10 +43,7 @@ function Home() {
                     <h1 className='text-4xl md:text-4xl mb-6 font-bold'> ACCIDENT <br/> GEOGRAPHIC MAP</h1>
                 </div>
                 <form>
-                    <div className=' w-full flex bg-white rounded-lg px-3 py-2 text-gray-400 mb-4'>
-                        <span className='my-auto'> <FaSearch/> </span>
-                        <input className=' focus:outline-none px-2 text-black' placeholder='Find point' />
-                    </div>
+                  <Search placeholder='Find Point' data={maps} status={false} width={false}/>
                 </form>
                 <Link to='/map' className='mx-auto mt-4 rounded-full bg-sky-800 w-44  px-0 py-1 text-md text-white font-semibold hover:bg-sky-900 transition duration-200 ease-in-out flex items-center justify-center'>
                     Get statistics 
