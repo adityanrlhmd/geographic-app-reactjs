@@ -32,7 +32,7 @@ function Create() {
         materialLoss: '',
         materialLoss2: '',
         materialLoss3: ''
-      });
+    });
     
       const handleSubmit = (e) => {
         e.preventDefault();

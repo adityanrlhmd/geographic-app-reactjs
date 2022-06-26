@@ -16,7 +16,7 @@ import axios from 'axios';
 
 export const getMaps = createAsyncThunk('maps/getMaps', async (_, { errorValue }) => {
     try{
-        const response = await axios.get('http://localhost:5000/api/geographic')
+        const response = await axios.get('https://server-geographic.herokuapp.com/api/geographic')
         return response;
     } catch(err){
         return errorValue(
@@ -25,47 +25,33 @@ export const getMaps = createAsyncThunk('maps/getMaps', async (_, { errorValue }
     }
 })
 
-// export const createPost = createAsyncThunk(
-//     "post/createPost",
-//     async ({ values }) => {
-//       return fetch(`http://localhost:5000/api/geographic`, {
-//         method: "POST",
-//         headers: {
-//           Accept: "application/json",
-//           "Content-type": "application/json",
-//         },
-//         body: JSON.stringify({
-//             year: values.year,
-//             latde: values.latde,
-//             longtde: values.longtde,
-//             street: values.street,
-//             street2: values.street2,
-//             street3: values.street3,
-//             text: values.text,
-//             text2: values.text2,
-//             text3: values.text3,
-//             date: values.date,
-//             date2: values.date2,
-//             date3: values.date3,
-//             die: values.die,
-//             die2: values.die2,
-//             die3: values.die3,
-//             seriousInj: values.seriousInj,
-//             seriousInj2: values.seriousInj2,
-//             seriousInj3: values.seriousInj3,
-//             minorInj: values.minorInj,
-//             minorInj2: values.minorInj2,
-//             minorInj3: values.minorInj3,
-//             materialLoss: values.materialLoss,
-//             materialLoss2: values.materialLoss2,
-//             materialLoss3: values.materialLoss3,
-//         }),
-//       }).then((res) => res.json());
-//     }
-//   );
+export const getMap = createAsyncThunk('map/getMap', async (_id, { errorValue }) => {
+    try{
+        const response = await axios.get(`https://server-geographic.herokuapp.com/api/geographic${_id}`)
+        return response;
+    } catch(err){
+        return errorValue(
+            'Opps there seems to be an error'
+        )
+    }
+})
 
-export const createMap = createAsyncThunk('post/createMap', async ({ 
-    year,
+export const deleteMap = createAsyncThunk('delete/deleteMap', async (_id, { errorValue }) => {
+    try{
+        const response = await axios.delete(`https://server-geographic.herokuapp.com/api/geographic/${_id}`)
+        return response.data;
+    } catch(err){
+        return errorValue(
+            'Opps there seems to be an error'
+        )
+    }
+})
+
+export const updateMap = createAsyncThunk('update/updateMap', async (update, { errorValue }) => {
+    try{
+        const {
+            _id,
+            year,
             latde,
             longtde,
             street,
@@ -88,10 +74,70 @@ export const createMap = createAsyncThunk('post/createMap', async ({
             minorInj3,
             materialLoss,
             materialLoss2,
-            materialLoss3,
+            materialLoss3
+        } = update
+        const response = await axios.put(`https://server-geographic.herokuapp.com/api/geographic/${_id}`, {
+            year,
+            latde,
+            longtde,
+            street,
+            street2,
+            street3,
+            text,
+            text2,
+            text3,
+            date,
+            date2,
+            date3,
+            die,
+            die2,
+            die3,
+            seriousInj,
+            seriousInj2,
+            seriousInj3,
+            minorInj,
+            minorInj2,
+            minorInj3,
+            materialLoss,
+            materialLoss2,
+            materialLoss3
+        })
+        return response.data;
+    } catch(err){
+        return errorValue(
+            'Opps there seems to be an error'
+        )
+    }
+})
+
+export const createMap = createAsyncThunk('post/createMap', async ({ 
+    year,
+    latde,
+    longtde,
+    street,
+    street2,
+    street3,
+    text,
+    text2,
+    text3,
+    date,
+    date2,
+    date3,
+    die,
+    die2,
+    die3,
+    seriousInj,
+    seriousInj2,
+    seriousInj3,
+    minorInj,
+    minorInj2,
+    minorInj3,
+    materialLoss,
+    materialLoss2,
+    materialLoss3,
  }, { errorValue }) => {
     try{
-        const response = await axios.post('http://localhost:5000/api/geographic', {
+        const response = await axios.post('https://server-geographic.herokuapp.com/api/geographic', {
             year,
             latde,
             longtde,
@@ -131,7 +177,7 @@ export const createMap = createAsyncThunk('post/createMap', async ({
 
 // export const getYear = createAsyncThunk('year/getYear', async (year, { errorValue }) => {
 //     try{
-//         const response = await axios.get(`http://localhost:5000/api/geographic/${year}`)
+//         const response = await axios.get(`https://server-geographic.herokuapp.com/api/geographic/${year}`)
 //         return response;
 //     } catch(err){
 //         return errorValue(
@@ -144,11 +190,17 @@ export const mapSlice = createSlice({
   name: 'map',
   initialState: {
     maps: [],
+    map: [],
     post: [],
+    delete: [],
+    update: [],
     loading: false,
     body: "",
     mapsState : 'fill',
+    mapState : 'fill',
     postState : '',
+    deleteState : '',
+    updateState : '',
     error : null,
     edit: false,
 },
@@ -164,6 +216,16 @@ extraReducers:{
     [getMaps.rejected]: (state, action) =>{
         console.log(action.error.message);
     },
+    [getMap.pending]: (state) => {
+        state.statusMaps = 'loading'
+    },
+    [getMap.fulfilled]: (state, action) => {
+        state.maps = action.payload.data
+        state.statusMaps = 'succeeded'
+    },
+    [getMap.rejected]: (state, action) =>{
+        console.log(action.error.message);
+    },
     [createMap.pending]: (state, action) => {
         state.loading = true;
     },
@@ -176,6 +238,43 @@ extraReducers:{
         }
     },
     [createMap.rejected]: (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+    },
+    [deleteMap.pending]: (state, action) => {
+        state.loading = true;
+    },
+    [deleteMap.fulfilled]: (state, action) => {
+        const currentMaps = state.maps.filter((map) =>
+            map._id !== action.payload._id
+        );
+
+        return {
+            ...state,
+                delete: currentMaps,
+                deleteState: 'fill',
+                loading: false 
+        }
+    },
+    [deleteMap.rejected]: (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+    },
+    [updateMap.pending]: (state, action) => {
+        state.loading = true;
+    },
+    [updateMap.fulfilled]: (state, action) => {
+        const updatedMap = state.maps.map((map) =>
+            map._id === action.payload._id ? action.payload : map)
+
+        return {
+            ...state,
+                update: updatedMap,
+                updateState: 'fill',
+                loading: false 
+        }
+    },
+    [updateMap.rejected]: (state, action) => {
         state.loading = false;
         state.error = action.payload;
     },

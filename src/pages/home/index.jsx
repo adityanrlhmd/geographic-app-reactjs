@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import './home.css'
-import Header from '../../components/header'
+// import Header from '../../components/header'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import { getMaps } from '../../store/mapSlice'
@@ -35,8 +35,8 @@ function Home() {
 
   return (
     <div className='wrap-content font-sans bg-sky-100'>
-        <Header/>    
-        <div className='container mx-auto w-full md:ml-20 h-screen xl:max-w-7xl px-16 md:px-0 grid grid-rows-2 md:grid-rows-1 grid-cols-1 md:grid-cols-4'>
+        {/* <Header/>     */}
+        <div className='container mx-auto w-full h-screen xl:max-w-7xl px-16 md:px-0 grid grid-rows-2 md:grid-rows-1 grid-cols-1 md:grid-cols-4'>
             <div className='col-span-1 h-full grid justify-center content-center'>
                 <div className='wrap-text text-left font-mono text-sky-900'>
                     <h4 className='text-md mb-2'>SUKABUMI CITY</h4>

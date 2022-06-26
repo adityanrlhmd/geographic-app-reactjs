@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import NavbarAdmin from '../../components/admin/navbar'
@@ -18,19 +19,25 @@ function Admin() {
       }
     }, [mapsState, dispatch]);
   
+    const [showDelete, setShowDelete] = useState(true);
+    const handleModal = () => {
+      setShowDelete(current => !current);
+    }
     const getData = maps.map((e,key) => {
       return (
         <Table key={key} {...e}/>
       )
     })
 
+
     const navigate = useNavigate();
 
   return (
-    <div className=' bg-sky-100 h-full'>
+    <div className=' bg-sky-100 h-full relative overflow-hidden'>
       <SidenavAdmin/>
       <main className='pl-64'>
-        <NavbarAdmin placeholder='Find Data'/>
+      {/* <Search placeholder='Find Point' data={maps} status={false} width={false}/> */}
+        <NavbarAdmin placeholder='Find Data' data={maps}/>
         <div className='content px-6 py-10 h-full'>
             <div className='bg-white rounded-2xl p-4 shadow-lg'>
               <div className='bg-sky-900 text-white rounded-2xl -mt-10 shadow-lg px-5 py-4 flex justify-between'>

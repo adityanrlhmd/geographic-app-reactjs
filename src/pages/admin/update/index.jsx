@@ -1,9 +1,91 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import NavbarAdmin from '../../../components/admin/navbar'
 import {IoMdArrowRoundBack} from 'react-icons/io'
 import { useNavigate } from 'react-router'
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { getMap, updateMap } from '../../../store/mapSlice';
 
 function Edit() {
+    const dispatch = useDispatch();
+    const map = useSelector(state => state.maps.map);
+    const statusMap = useSelector(state => state.maps.statusMap);
+    // const param =useParams();
+
+    // useEffect( () => {
+    //     if(statusMap === 'idle'){
+    //       dispatch(getMap(param.id))
+    //     };
+    //   }, [statusMap, dispatch, param])
+    
+    
+    //history
+    // const history = useHistory();
+
+    //get ID from parameter URL
+    const param = useParams();
+    const [update, setUpdate] = useState({
+        latde: '',
+        longtde: '',
+        year: '',
+        street: '',
+        street2: '',
+        street3: '',
+        text: '',
+        text2: '',
+        text3: '',
+        date: '',
+        date2: '',
+        date3: '',
+        die: '',
+        die2: '',
+        die3: '',
+        seriousInj: '',
+        seriousInj2: '',
+        seriousInj3: '',
+        minorInj: '',
+        minorInj2: '',
+        minorInj3: '',
+        materialLoss: '',
+        materialLoss2: '',
+        materialLoss3: ''
+      });
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        // dispatch
+        // useEffect(() => {
+        //     dispatch(updateMap(param.id)
+        // })
+        dispatch(updateMap(param.id))
+        setUpdate({
+            latde: '',
+            longtde: '',
+            year: '',
+            street: '',
+            street2: '',
+            street3: '',
+            text: '',
+            text2: '',
+            text3: '',
+            date: '',
+            date2: '',
+            date3: '',
+            die: '',
+            die2: '',
+            die3: '',
+            seriousInj: '',
+            seriousInj2: '',
+            seriousInj3: '',
+            minorInj: '',
+            minorInj2: '',
+            minorInj3: '',
+            materialLoss: '',
+            materialLoss2: '',
+            materialLoss3: ''
+        });
+        navigate('/admin')
+      };
 
     const navigate = useNavigate();
   return (
@@ -17,30 +99,30 @@ function Edit() {
                 <div className='bg-sky-900 text-white rounded-2xl -mt-10 shadow-lg px-5 py-4 flex justify-between'>
                     <h1 className='text-2xl font-semibold'>Edit Data Black Spot</h1>
                 </div>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 md:grid-cols-2 pt-5 gap-6">
                         <div className="start ">
                             <div className='koordinat mb-3'>
                                 <label className='font-bold'>Koordinat</label>
                                 <div className="flex w-full">
-                                    <input type='text' className='w-full mr-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi data latitude'/>
-                                    <input type='text' className='w-full ml-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi data longitude'/>
+                                    <input value={update.latde} onChange={(e) => setUpdate({ ...update, latde: e.target.value })} type='text' className='w-full mr-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi data latitude'/>
+                                    <input value={update.longtde} onChange={(e) => setUpdate({ ...update, longtde: e.target.value })} type='text' className='w-full ml-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi data longitude'/>
                                 </div>
                             </div>
                             <div className="street mb-3">
                                 <label className='font-bold'>Nama Jalan</label>
                                 <div className="w-full flex">
-                                    <textarea className='h-24 resize-none w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi nama jalan kejadian pertama'></textarea>
-                                    <textarea className='h-24 resize-none w-full mx-3 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi nama jalan kejadian kedua'></textarea>
-                                    <textarea className='h-24 resize-none w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi nama jalan kejadian ketiga'></textarea>
+                                    <textarea value={update.street} onChange={(e) => setUpdate({ ...update, street: e.target.value })} className='h-24 resize-none w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi nama jalan kejadian pertama'></textarea>
+                                    <textarea value={update.street2} onChange={(e) => setUpdate({ ...update, street2: e.target.value })} className='h-24 resize-none w-full mx-3 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi nama jalan kejadian kedua'></textarea>
+                                    <textarea value={update.street3} onChange={(e) => setUpdate({ ...update, street3: e.target.value })} className='h-24 resize-none w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi nama jalan kejadian ketiga'></textarea>
                                 </div>
                             </div>
                             <div className="type mb-3">
                                 <label className='font-bold'>Tipe Kejadian</label>
                                 <div className="w-full flex">
-                                    <textarea className='h-24 resize-none w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi type kejadian pertama'></textarea>
-                                    <textarea className='h-24 resize-none w-full mx-3 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi type kejadian kedua'></textarea>
-                                    <textarea className='h-24 resize-none w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi type kejadian ketiga'></textarea>
+                                    <textarea value={update.text} onChange={(e) => setUpdate({ ...update, text: e.target.value })} className='h-24 resize-none w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi type kejadian pertama'></textarea>
+                                    <textarea value={update.text2} onChange={(e) => setUpdate({ ...update, text2: e.target.value })} className='h-24 resize-none w-full mx-3 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi type kejadian kedua'></textarea>
+                                    <textarea value={update.text3} onChange={(e) => setUpdate({ ...update, text3: e.target.value })} className='h-24 resize-none w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Isi type kejadian ketiga'></textarea>
                                 </div>
                             </div>
                         </div>
@@ -48,9 +130,9 @@ function Edit() {
                             <div className="date mb-3">
                                 <label className='font-bold'>Tanggal</label>
                                 <div className='w-full flex'>
-                                    <input type='date' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg'/>
-                                    <input type='date' className='w-full mx-2 px-3 py-1 focus:outline-none border border-primary rounded-lg'/>
-                                    <input type='date' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg'/>
+                                    <input value={update.date} onChange={(e) => setUpdate({ ...update, date: e.target.value })} type='date' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg'/>
+                                    <input value={update.date2} onChange={(e) => setUpdate({ ...update, date2: e.target.value })} type='date' className='w-full mx-2 px-3 py-1 focus:outline-none border border-primary rounded-lg'/>
+                                    <input value={update.date3} onChange={(e) => setUpdate({ ...update, date3: e.target.value })} type='date' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg'/>
                                 </div>
                             </div>
                             <div className="wrap-korban mb-3">
@@ -59,25 +141,25 @@ function Edit() {
                                     <div className="first">
                                         <label>Kejadian Pertama</label>
                                         <div className='w-full'>
-                                            <input type='number' className='w-full mb-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Meninggal dunia'/>
-                                            <input type='number' className='w-full mb-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Luka berat'/>
-                                            <input type='number' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Luka ringan'/>
+                                            <input value={update.die} onChange={(e) => setUpdate({ ...update, die: e.target.value })} type='number' className='w-full mb-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Meninggal dunia'/>
+                                            <input value={update.seriousInj} onChange={(e) => setUpdate({ ...update, seriousInj: e.target.value })} type='number' className='w-full mb-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Luka berat'/>
+                                            <input value={update.minorInj} onChange={(e) => setUpdate({ ...update, minorInj: e.target.value })} type='number' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Luka ringan'/>
                                         </div>
                                     </div>
                                     <div className="second">
                                         <label>Kejadian Kedua</label>
                                         <div className='w-full'>
-                                            <input type='number' className='w-full mb-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Meninggal dunia'/>
-                                            <input type='number' className='w-full mb-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Luka berat'/>
-                                            <input type='number' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Luka ringan'/>
+                                            <input value={update.die2} onChange={(e) => setUpdate({ ...update, die2: e.target.value })} type='number' className='w-full mb-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Meninggal dunia'/>
+                                            <input value={update.seriousInj2} onChange={(e) => setUpdate({ ...update, seriousInj2: e.target.value })} type='number' className='w-full mb-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Luka berat'/>
+                                            <input value={update.minorInj2} onChange={(e) => setUpdate({ ...update, minorInj2: e.target.value })} type='number' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Luka ringan'/>
                                         </div>
                                     </div>
                                     <div className="third">
                                         <label>Kejadian Ketiga</label>
                                         <div className='w-full'>
-                                            <input type='number' className='w-full mb-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Meninggal dunia'/>
-                                            <input type='number' className='w-full mb-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Luka berat'/>
-                                            <input type='number' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Luka ringan'/>
+                                            <input value={update.die3} onChange={(e) => setUpdate({ ...update, die3: e.target.value })} type='number' className='w-full mb-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Meninggal dunia'/>
+                                            <input value={update.seriousInj3} onChange={(e) => setUpdate({ ...update, seriousInj3: e.target.value })} type='number' className='w-full mb-2 px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Luka berat'/>
+                                            <input value={update.minorInj3} onChange={(e) => setUpdate({ ...update, minorInj3: e.target.value })} type='number' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Luka ringan'/>
                                         </div>
                                     </div>
                                 </div>
@@ -85,14 +167,14 @@ function Edit() {
                             <div className="loss mb-3">
                                 <h3>Kerugian Materi</h3>
                                 <div className="flex gap-3">
-                                    <input type='number' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Kejadian pertama'/>
-                                    <input type='number' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Kejadian kedua'/>
-                                    <input type='number' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Kejadian ketiga'/>
+                                    <input value={update.materialLoss} onChange={(e) => setUpdate({ ...update, materialLoss: e.target.value })} type='number' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Kejadian pertama'/>
+                                    <input value={update.materialLoss2} onChange={(e) => setUpdate({ ...update, materialLoss2: e.target.value })} type='number' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Kejadian kedua'/>
+                                    <input value={update.materialLoss3} onChange={(e) => setUpdate({ ...update, materialLoss3: e.target.value })} type='number' className='w-full px-3 py-1 focus:outline-none border border-primary rounded-lg' placeholder='Kejadian ketiga'/>
                                 </div>
                             </div>
                             <div className="year mb-2">
                                 <label className='font-bold mr-2'>Tahun</label>
-                                <select className='px-3 py-1 focus:outline-none border border-primary rounded-lg'>
+                                <select value={update.year} onChange={(e) => setUpdate({ ...update, year: e.target.value })} className='px-3 py-1 focus:outline-none border border-primary rounded-lg'>
                                     <option>2017</option>
                                     <option>2018</option>
                                     <option>2019</option>

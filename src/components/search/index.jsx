@@ -7,7 +7,9 @@ function Search({placeholder, data, status, menu, show, width}) {
     const handleFilter = (event) => {
         const searchWord = event.target.value;
         const newFilter = data.filter((value) => {
-            return value.text2.toLowerCase().includes(searchWord?.toLowerCase())
+            return (
+                value.street.toLowerCase().includes(searchWord?.toLowerCase())
+            )
         });
         if (searchWord === "") {
             setFilterData([]);
@@ -19,11 +21,11 @@ function Search({placeholder, data, status, menu, show, width}) {
     <Fragment>
         {status ? (
             <div className='w-60 sm:w-80 md:w-96 flex  bg-white rounded-lg px-4 py-2 text-gray-400 drop-shadow-lg transition duration-1000 ease-in-out z-40'>
-                <button onClick={menu} className={`text-2xl text-black pr-2 transition duration-700 ease-in-out border-r-2${show ? '' : '-mr-[2px]'}`}> 
+                {/* <button onClick={menu} className={`text-2xl text-black pr-2 transition duration-700 ease-in-out border-r-2${show ? '' : '-mr-[2px]'}`}> 
                     <span className={`w-7 h-[2px] my-[6px] block bg-primary transition duration-300 ease-in-out origin-top-left ${show ? '' : 'rotate-45 w-6'}`}></span>
                     <span className={`w-7 h-[2px] my-[6px] block bg-primary transition duration-300 ease-in-out ${show ? '' : 'scale-0'}`}></span>
                     <span className={`w-7 h-[2px] my-[6px] block bg-primary transition duration-300 ease-in-out origin-bottom-left ${show ? '' : '-rotate-45 w-6'}`}></span>
-                </button>
+                </button> */}
                 <input type='text' className=' text-lg focus:outline-none px-2 text-black w-full' placeholder={placeholder} onChange={handleFilter}/>
                 <span className='my-auto text-lg'> <FaSearch/> </span>
             </div>
@@ -39,7 +41,7 @@ function Search({placeholder, data, status, menu, show, width}) {
             {filterData.map((value, key) => {
                 return (
                     <div role='button' className='py-2 px-3 cursor-pointer hover:bg-gray-100 rounded-lg text-black'> 
-                        <p>{value.text2}</p>    
+                        <p>{value.street}</p>    
                     </div>
                 )
             })}
