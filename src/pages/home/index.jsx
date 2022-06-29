@@ -50,8 +50,8 @@ function Home() {
                     <span className='ml-1'> <FaLongArrowAltRight fontSize='large'/> </span>
                 </Link>
             </div>
-            <div className="exampleMap col-span-3 w-full">
-                <div className="flex items-center justify-center h-full md:px-16 pb-4 md:py-8">
+            <div className="exampleMap col-span-3 w-full ">
+                <div className="flex items-center justify-center h-full  md:px-16 pb-4 md:py-8">
                 <MapContainer center={center} zoom={13} scrollWheelZoom={true} ref={setMap} zoomControl={false} className='relative'>
                     <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -29,11 +29,10 @@ function Admin() {
       )
     })
 
-
     const navigate = useNavigate();
 
   return (
-    <div className=' bg-sky-100 h-full relative overflow-hidden'>
+    <div className=' bg-sky-100 relative overflow-hidden'>
       <SidenavAdmin/>
       <main className='pl-64'>
       {/* <Search placeholder='Find Point' data={maps} status={false} width={false}/> */}

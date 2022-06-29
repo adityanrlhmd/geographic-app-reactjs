@@ -13,9 +13,9 @@ function MarkerMap(props) {
   return (
     <>
         <Marker key={props.id} position={[latde, longtde]} eventHandlers={{ click: handleClick }}>
-          <div className={`absolute right-32 top-1/4 z-[999] transition ease-in-out duration-400 drop-shadow-2xl ${show ? "translate-x-full scale-0" : ""}`}>
+          <div className={`fixed w-full bottom-0 md:w-auto md:absolute md:right-32 md:top-1/4 z-[999] transition ease-in-out duration-400 drop-shadow-2xl ${show ? " translate-x-full md:scale-0" : ""}`}>
             <div className='absolute right-3 top-2'>
-              <button onClick={handleClick} className='text-lg'><IoMdClose/></button>
+              <button onClick={handleClick} className='text-2xl md:text-lg'><IoMdClose/></button>
             </div>
             <div className="max-w-lg rounded-lg p-5 bg-white">
               <h1 className='font-bold'>{props.year}</h1>

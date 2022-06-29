@@ -24,6 +24,21 @@ function MenuMap() {
     const categoryClick = () => {
       setShowCategory(current => !current);
     }
+
+    // const getYearM = maps.map((e,key) => {
+    //     return (
+    //         <button className={`bg-white mx-0 my-1 drop-shadow-lg px-2 py-2 rounded-lg hover:bg-gray-100  transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
+    //             {e.year}
+    //         </button>
+    //     )
+    //   })
+    // const getYear = maps.map((e,key) => {
+    //     return (
+    //         <button className={`bg-white drop-shadow-lg px-5 py-2 mr-5 rounded-lg hover:bg-gray-100 flex transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
+    //             {e.year}
+    //         </button>
+    //     )
+    //   })
     
   return (
     <Fragment>
@@ -39,41 +54,41 @@ function MenuMap() {
             </button>
             <div className='flex md:hidden pl-5 overflow-x-hidden py-1'>            
                 <div className={`transition flex flex-col ease-in-out duration-1000 z-20 mr-5 ${showCategory ? '' : '-translate-y-full'}`}>
-                    <button className={`bg-white mx-0 my-1 drop-shadow-lg px-2 py-2 rounded-lg hover:bg-gray-100  transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
-                        2017
-                    </button>
-                    <button className={`bg-white mx-0 my-1 drop-shadow-lg px-2 py-2 rounded-lg hover:bg-gray-100  transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
-                        2018
-                    </button>
-                    <button className={`bg-white mx-0 my-1 drop-shadow-lg px-2 py-2 rounded-lg hover:bg-gray-100  transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
-                        2019
-                    </button>
-                    <button className={`bg-white mx-0 my-1 drop-shadow-lg px-2 py-2 rounded-lg hover:bg-gray-100 transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
-                        2020
-                    </button>
-                    <button className={`bg-white mx-0 my-1 drop-shadow-lg px-2 py-2 rounded-lg hover:bg-gray-100 transition ease-in-out duration-1000 ${showCategory ? '' : 'drop-shadow-none'}`}>
-                        2021
-                    </button>
+                  <button className={`bg-white mx-0 my-1 drop-shadow-lg px-2 py-2 rounded-lg hover:bg-gray-100  transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
+                    2017
+                  </button>
+                  <button className={`bg-white mx-0 my-1 drop-shadow-lg px-2 py-2 rounded-lg hover:bg-gray-100  transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
+                    2018
+                  </button>
+                  <button className={`bg-white mx-0 my-1 drop-shadow-lg px-2 py-2 rounded-lg hover:bg-gray-100  transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
+                    2019
+                  </button>
+                  <button className={`bg-white mx-0 my-1 drop-shadow-lg px-2 py-2 rounded-lg hover:bg-gray-100  transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
+                    2020
+                  </button>
+                  <button className={`bg-white mx-0 my-1 drop-shadow-lg px-2 py-2 rounded-lg hover:bg-gray-100  transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
+                    2021
+                  </button>
                 </div>
             </div>
             </div> 
             <div className='flex pl-5 hidden md:block overflow-x-hidden py-1'>            
                 <div className={`flex transition ease-in-out duration-1000 z-20 mr-5 ${showCategory ? '' : '-translate-x-[450px]'}`}>
-                    <button className={`bg-white drop-shadow-lg px-5 py-2 my-auto rounded-lg hover:bg-gray-100 flex transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
-                        2017
-                    </button>
-                    <button className={`bg-white ml-5 drop-shadow-lg px-5 py-2 my-auto rounded-lg hover:bg-gray-100 flex transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
-                        2018
-                    </button>
-                    <button className={`bg-white ml-5 drop-shadow-lg px-5 py-2 my-auto rounded-lg hover:bg-gray-100 flex transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
-                        2019
-                    </button>
-                    <button className={`bg-white ml-5 drop-shadow-lg px-5 py-2 my-auto rounded-lg hover:bg-gray-100 flex transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
-                        2020
-                    </button>
-                    <button className={`bg-white ml-5 drop-shadow-lg px-5 py-2 my-auto rounded-lg hover:bg-gray-100 flex transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
-                        2021
-                    </button>
+                  <button className={`bg-white drop-shadow-lg px-5 py-2 mr-5 rounded-lg hover:bg-gray-100 flex transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
+                    2017
+                  </button>
+                  <button className={`bg-white drop-shadow-lg px-5 py-2 mr-5 rounded-lg hover:bg-gray-100 flex transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
+                    2018
+                  </button>
+                  <button className={`bg-white drop-shadow-lg px-5 py-2 mr-5 rounded-lg hover:bg-gray-100 flex transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
+                    2019
+                  </button>
+                  <button className={`bg-white drop-shadow-lg px-5 py-2 mr-5 rounded-lg hover:bg-gray-100 flex transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
+                    2020
+                  </button>
+                  <button className={`bg-white drop-shadow-lg px-5 py-2 mr-5 rounded-lg hover:bg-gray-100 flex transition ease-in-out duration-1000 ${showCategory ? '' : ''}`}>
+                    2021
+                  </button>
                 </div>
             </div>
         </div>

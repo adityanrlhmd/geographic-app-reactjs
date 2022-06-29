@@ -10,6 +10,7 @@ function Table(props) {
   const navigate = useNavigate();
   const handleDelete = (_id) => {
     dispatch(deleteMap(_id))
+    setModal(true)
     window.location.reload();
   }
   return (
