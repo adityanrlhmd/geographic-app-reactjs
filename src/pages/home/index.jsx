@@ -40,7 +40,7 @@ function Home() {
             <div className='col-span-1 h-full grid justify-center content-center'>
                 <div className='wrap-text text-left font-mono text-sky-900'>
                     <h4 className='text-md mb-2'>SUKABUMI CITY</h4>
-                    <h1 className='text-4xl md:text-4xl mb-6 font-bold'> ACCIDENT <br/> GEOGRAPHIC MAP</h1>
+                    <h1 className='text-4xl md:text-4xl mb-6 font-bold'> BLACK SPOT <br/> GEOGRAPHIC MAP</h1>
                 </div>
                 <form>
                   <Search placeholder='Find Point' data={maps} status={false} width={false}/>
