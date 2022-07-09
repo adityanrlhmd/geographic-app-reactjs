@@ -46,12 +46,11 @@ function Admin() {
               <table class=" table-fixed w-full mt-6 px-12">
                 <thead>
                   <tr>
-                    <th className='p-2 w-[3%] text-center overflow-hidden border-b border-sky-500'>No</th>
                     <th className='p-2 w-[6%] text-center overflow-hidden border-b border-sky-500'>Tahun</th>
                     <th className='p-2 w-[10%] text-center overflow-hidden border-b border-sky-500'>Koordinat</th>
                     <th className='p-2 w-[22%] text-left overflow-hidden border-b border-sky-500'>Lokasi</th>
                     <th className='p-2 w-[23%] text-left overflow-hidden border-b border-sky-500'>Kejadian</th>
-                    <th className='p-2 w-[10%] text-left overflow-hidden border-b border-sky-500'>Tanggal</th>
+                    <th className='p-2 w-[13%] text-left overflow-hidden border-b border-sky-500'>Tanggal</th>
                     <th className='p-2 w-[4%] text-left overflow-hidden border-b border-sky-500'>MD</th>
                     <th className='p-2 w-[4%] text-left overflow-hidden border-b border-sky-500'>LB</th>
                     <th className='p-2 w-[4%] text-left overflow-hidden border-b border-sky-500'>LK</th>

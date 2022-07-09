@@ -9,9 +9,15 @@ import { getMap, updateMap } from '../../../store/mapSlice';
 function Edit() {
     const dispatch = useDispatch();
     const map = useSelector(state => state.maps.map);
-    const statusMap = useSelector(state => state.maps.statusMap);
+    const mapState = useSelector(state => state.maps.mapState);
     // const param =useParams();
-
+    useEffect( () => {
+        if (mapState==='fill'){
+          dispatch(getMap(param._id));
+        }
+      }, [mapState, dispatch]);
+      
+      console.log(map)
     // useEffect( () => {
     //     if(statusMap === 'idle'){
     //       dispatch(getMap(param.id))
@@ -25,6 +31,7 @@ function Edit() {
     //get ID from parameter URL
     const param = useParams();
     const [update, setUpdate] = useState({
+        _id: null,
         latde: '',
         longtde: '',
         year: '',
@@ -50,42 +57,67 @@ function Edit() {
         materialLoss2: '',
         materialLoss3: ''
       });
+      const [message, setMessage] = useState("");
+    //   const getIdMap = (_id) => {
+    //     getMap.get(_id)
+    //       .then(response => {
+    //         setUpdate(response.data);
+    //       })
+    //       .catch(e => {
+    //         console.log(e);
+    //       });
+    //   };
     
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        // dispatch
-        // useEffect(() => {
-        //     dispatch(updateMap(param.id)
-        // })
-        dispatch(updateMap(param.id))
-        setUpdate({
-            latde: '',
-            longtde: '',
-            year: '',
-            street: '',
-            street2: '',
-            street3: '',
-            text: '',
-            text2: '',
-            text3: '',
-            date: '',
-            date2: '',
-            date3: '',
-            die: '',
-            die2: '',
-            die3: '',
-            seriousInj: '',
-            seriousInj2: '',
-            seriousInj3: '',
-            minorInj: '',
-            minorInj2: '',
-            minorInj3: '',
-            materialLoss: '',
-            materialLoss2: '',
-            materialLoss3: ''
-        });
-        navigate('/admin')
+    //   useEffect(() => {
+    //     getIdMap(param._id);
+    //   }, [param._id]);
+
+    //   const handleInputChange = event => {
+    //     const { name, value } = event.target;
+    //     setCurrentTutorial({ ...currentTutorial, [name]: value });
+    //   };
+    const handleSubmit = () => {
+        dispatch(updateMap({ _id: update._id, data: update }))
+          .unwrap()
+          .then(response => {
+            console.log(response);
+            setMessage("The tutorial was updated successfully!");
+          })
+          .catch(e => {
+            console.log(e);
+          });
       };
+    //   const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     dispatch(updateMap(param.id))
+    //     setUpdate({
+    //         latde: '',
+    //         longtde: '',
+    //         year: '',
+    //         street: '',
+    //         street2: '',
+    //         street3: '',
+    //         text: '',
+    //         text2: '',
+    //         text3: '',
+    //         date: '',
+    //         date2: '',
+    //         date3: '',
+    //         die: '',
+    //         die2: '',
+    //         die3: '',
+    //         seriousInj: '',
+    //         seriousInj2: '',
+    //         seriousInj3: '',
+    //         minorInj: '',
+    //         minorInj2: '',
+    //         minorInj3: '',
+    //         materialLoss: '',
+    //         materialLoss2: '',
+    //         materialLoss3: ''
+    //     });
+    //     navigate('/admin')
+    //   };
 
     const navigate = useNavigate();
   return (

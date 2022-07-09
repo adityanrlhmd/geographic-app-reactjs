@@ -38,7 +38,7 @@ function MarkerMap(props) {
               </div>
             </div>
           </div>
-          <Popup><h2 className='text-center'>{props.year}</h2></Popup>
+          <Popup><h2 className='text-center'>{props.latde}, {props.longtde}</h2></Popup>
         </Marker>
     </>
   )

@@ -47,61 +47,9 @@ export const deleteMap = createAsyncThunk('delete/deleteMap', async (_id, { erro
     }
 })
 
-export const updateMap = createAsyncThunk('update/updateMap', async (update, { errorValue }) => {
+export const updateMap = createAsyncThunk('update/updateMap', async (_id, data, { errorValue }) => {
     try{
-        const {
-            _id,
-            year,
-            latde,
-            longtde,
-            street,
-            street2,
-            street3,
-            text,
-            text2,
-            text3,
-            date,
-            date2,
-            date3,
-            die,
-            die2,
-            die3,
-            seriousInj,
-            seriousInj2,
-            seriousInj3,
-            minorInj,
-            minorInj2,
-            minorInj3,
-            materialLoss,
-            materialLoss2,
-            materialLoss3
-        } = update
-        const response = await axios.put(`https://server-geographic.herokuapp.com/api/geographic/${_id}`, {
-            year,
-            latde,
-            longtde,
-            street,
-            street2,
-            street3,
-            text,
-            text2,
-            text3,
-            date,
-            date2,
-            date3,
-            die,
-            die2,
-            die3,
-            seriousInj,
-            seriousInj2,
-            seriousInj3,
-            minorInj,
-            minorInj2,
-            minorInj3,
-            materialLoss,
-            materialLoss2,
-            materialLoss3
-        })
+        const response = await axios.put(`https://server-geographic.herokuapp.com/api/geographic/${_id}`, data)
         return response.data;
     } catch(err){
         return errorValue(

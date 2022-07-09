@@ -11,7 +11,10 @@ function Table(props) {
   const handleDelete = (_id) => {
     dispatch(deleteMap(_id))
     setModal(true)
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000)
+    // navigate('/admin')
   }
   return (
     <Fragment>
@@ -28,7 +31,6 @@ function Table(props) {
       </div>
       <tbody>
         <tr className='hover:bg-gray-100 relative border-b-2'>
-          <td className='py-4 px-2 text-center overflow-hidden'>{props.index + 1}</td>
           <td className='py-4 px-2 text-center overflow-hidden'>{props.year}</td>
           <td className='py-4 px-2 text-center overflow-hidden'>{props.latde} <br/> {props.longtde}</td>
           <td className='py-4 px-2 text-left overflow-hidden'>
